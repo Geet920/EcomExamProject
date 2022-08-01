@@ -3,9 +3,12 @@ import styled from "styled-components";
 import SearchIcon from "@mui/icons-material/Search";
 import { Badge } from "@material-ui/core";
 import { ShoppingCartOutlined } from "@mui/icons-material";
+import { mobile } from "../responsive";
+import { Link} from 'react-router-dom';
 
 const Container = styled.div`
   height: 60px;
+  ${mobile({ backgroundColor: "red" })}
 `;
 
 const Wrapper = styled.div`
@@ -62,9 +65,15 @@ const Navbar = () => {
           </SearchContainer>
         </Center>
         <Right>
-          <MenuItem>Products</MenuItem>
-          <MenuItem>Template</MenuItem>
-          <MenuItem>Sign In</MenuItem>
+          <Link to="/categories" style={{textDecoration: 'none'}}>
+            <MenuItem >Products</MenuItem>
+          </Link>
+          <Link to="/register" style={{textDecoration: 'none'}}>
+            <MenuItem >Register</MenuItem>
+          </Link>
+          <Link to="/login" style={{textDecoration: 'none'}}>
+            <MenuItem >Login</MenuItem>
+          </Link>
           <MenuItem>
             <Badge badgeContent={4} color="primary">
               <ShoppingCartOutlined />
