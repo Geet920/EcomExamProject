@@ -20,6 +20,7 @@ const Wrapper = styled.div`
 
 const ImgContainer = styled.div`
   flex: 1;
+  max-width: 350px;
 `;
 
 const Image = styled.img`

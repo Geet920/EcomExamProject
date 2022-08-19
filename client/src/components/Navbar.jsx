@@ -1,14 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { Badge } from "@mui/material";
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import { mobile } from "../responsive";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/userRedux";
+import { useState } from "react";
+import { UserModel } from "./Model/UserModel";
 
 const Container = styled.div`
   height: 60px;
+  background-color: #d3ebcd;
   ${mobile({ height: "50px" })}
 `;
 
@@ -38,13 +43,10 @@ const Logo = styled.h1`
   font-weight: bold;
   ${mobile({ fontSize: "24px" })}
   cursor: pointer;
+  align-items: flex-end;
 `;
 
-const Center = styled.div`
-  flex: 1;
-  display: flex;
-  align-items: center;
-`;
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -61,39 +63,64 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
-  const quantity = useSelector((state) => state.cart.quantity);
+  const [hover, setHover] = useState(null);
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user.currentUser);
+  const cartQuantity = useSelector((state) => state.cart.quantity);
+  const wish = useSelector((state) => state.wish.wishlist);
+  console.log(wish)
+  const handleHover = (e) => {
+    let hovered = Number(e.target.id);
+    setHover(hovered);
+  };
+  const handleMouseOut = (e) => {
+    setHover(0);
+  };
 
   return (
     <Container>
       <Wrapper>
-        <Left>
-          <Link to="/" style={{ textDecoration: "none", color: "#000000" }}>
-            <Logo>GEET_</Logo>
-          </Link>
+        <Left onClick={() => navigate("/")}>
+          <Logo>GEET_</Logo>
         </Left>
-        <Center>
-          <SearchContainer>
-            <Input />
-            <SearchIcon style={{ color: "gray", fontSize: 16 }}></SearchIcon>
-          </SearchContainer>
-        </Center>
+        
         <Right>
-          <Link to="/categories" style={{ textDecoration: "none" }}>
-            <MenuItem>Products</MenuItem>
-          </Link>
-          <Link to="/register" style={{ textDecoration: "none" }}>
-            <MenuItem>Register</MenuItem>
-          </Link>
-          <Link to="/login" style={{ textDecoration: "none" }}>
-            <MenuItem>Login</MenuItem>
-          </Link>
-          <Link to="/cart">
+          <MenuItem onClick={() => navigate("/categories")}>
+            Products
+          </MenuItem>
+          {user !== null && (
+            <MenuItem>
+              <Badge badgeContent={wish?.length} color="warning">
+                <FavoriteBorderOutlinedIcon
+                  onClick={() => {
+                    navigate("/wishlist");
+                  }}
+                />
+              </Badge>
+            </MenuItem>
+          )}
+          {user !== null ? (
+            <MenuItem>
+              <UserModel />
+            </MenuItem>
+          ) : (
+            <MenuItem
+              onClick={() => {
+                navigate("/login");
+              }}
+            >
+              Login
+            </MenuItem>
+          )}
           <MenuItem>
-            <Badge badgeContent={quantity} color="primary">
-              <ShoppingCartOutlined />
+            <Badge badgeContent={cartQuantity} color="warning">
+              <ShoppingCartOutlined
+                onClick={() => {
+                  navigate("/cart");
+                }}
+              />
             </Badge>
           </MenuItem>
-          </Link>
         </Right>
       </Wrapper>
     </Container>

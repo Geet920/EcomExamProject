@@ -3,54 +3,66 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { login } from "../redux/apiCalls";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import FailedModel from "../components/Model/FailedModel";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.5),
-      rgba(255, 255, 255, 0.5)
-    ),
-    url("https://images.pexels.com/photos/1108701/pexels-photo-1108701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  background-size: cover;
-
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 `;
 
 const Wrapper = styled.div`
+   width: 85vw;
+  max-width: 400px;
   padding: 20px;
-  width: 40%;
-  background-color: #d6f6ff;
 `;
 
 const Form = styled.form`
-  display: flex;
+   display: flex;
   flex-direction: column;
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
-  font-weight: 300;
+  color: black;
+  font-weight: bold;
+  margin: 20px auto;
+  text-align: center;
 `;
 
 const Input = styled.input`
-  flex: 1;
+   flex: 1;
+  width: 85%;
   min-width: 40%;
-  margin: 10px 0px;
+  margin: 10px auto;
   padding: 10px;
+  text-indent: 10px;
+  border-radius: 30px;
+  border: 1px solid lightgrey;
 `;
 
 const Button = styled.button`
+ text-align: center;
   width: 40%;
   border: none;
-  padding: 15px 20px;
-  background-color: paleturquoise;
+  padding: 10px 0;
+  background-color: #110f12;
+  border-radius: 30px;
+  color: white;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin: 5px auto;
+  transition: all 0.3s ease-out;
+  &:hover {
+    opacity: 0.8;
+  }
   &:disabled {
-    color: greenyellow;
+    background-color: #f8f8f8;
+    color: black;
     cursor: not-allowed;
   }
 `;
@@ -66,36 +78,107 @@ const Link = styled.a`
   cursor: pointer;
 `;
 
+const Agreement = styled.label`
+  color: grey;
+  width: "85%";
+  font-size: 12px;
+  text-align: left;
+  padding-bottom: 10px;
+  display: block;
+  margin-left: 60px;
+  text-indent: -20px;
+`;
+const CheckBox = styled.input`
+  vertical-align: middle;
+  position: relative;
+  margin-right: 10px;
+  bottom: 1px;
+`;
+const Options = styled.a`
+  margin: 8px 0px;
+  font-size: 12px;
+  color: grey;
+  text-decoration: underline;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+`;
+
+//Google Login Testing
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { isFetching, error } = useSelector((state) => state.user);
 
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { username, password });
   };
+
+  // function handleCallbackResponse(response) {
+  //   console.log("Encoded JWT ID token: " + response.credential);
+  // }
+
+  // useEffect(() => {
+  //   //global google
+  //   const google = window.google;
+  //   google.accounts.id.initialize({
+  //     client_id:
+  //       "307890141883-nq6v63ammi94re6bji5k9q404ccdhu6s.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse,
+  //   });
+
+  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+  //     theme: "outline",
+  //     size: "large",
+  //   });
+  // }, []);
+
   return (
     <Container>
+      <FailedModel display={error === false ? "none" : "flex"} />
       <Wrapper>
-        <Title>LOGIN TO YOUR ACCOUNT</Title>
+        <Title>Hi, Welcome Back </Title>
         <Form>
           <Input
+            type="text"
             placeholder="username"
             onChange={(e) => setUsername(e.target.value)}
+            required
           />
           <Input
             placeholder="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
-          <Button onClick={handleClick} disabled={isFetching}>
+          <Agreement htmlFor="log" style={{ marginTop: "10px" }}>
+            <CheckBox
+              type="checkbox"
+              id="log"
+              style={{ marginRight: "10px" }}
+              defaultChecked
+            />
+            Keep me logged in
+          </Agreement>
+          <Button onClick={handleClick} disabled={isFetching ? true : false}>
             LOGIN
           </Button>
-          {error && <Error >Something went wrong...</Error>}
-          <Link>Forgot Password?</Link>
-          <Link>Create a new account</Link>
+          {/* <span>
+            <div id="signInDiv"></div>
+          </span> */}
+          {/* {error && <Error>Something went wrong...</Error>} */}
+          <Options>Forgot password?</Options>
+          <Options
+            onClick={() => {
+              navigate("/register");
+            }}
+          >
+            Not yet a member? Click here
+          </Options>
         </Form>
       </Wrapper>
     </Container>

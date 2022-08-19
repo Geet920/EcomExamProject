@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
-import { someProducts } from "../data";
-import Product from "./Product";
+import ProductItem from "./ProductItem";
 import axios from "axios";
 
 const Container = styled.div`
@@ -66,7 +65,7 @@ const Products = ({ cat, filters, sort }) => {
   return (
     <Container>
       {filteredProducts.map((item) => (
-        <Product item={item} key={item.id} />
+        <ProductItem item={item} key={item.id} />
       ))}
     </Container>
   );

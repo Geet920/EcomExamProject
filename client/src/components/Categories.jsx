@@ -29,8 +29,8 @@ const Categories = () => {
             <CategoryItem item={item} key={item.id} />
           ))}
         </Wrapper>
-        <Footer />
       </Container>
+      <Footer />
     </div>
   );
 };

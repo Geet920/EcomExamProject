@@ -10,21 +10,21 @@ export const SliderItems = [
     img: wday,
     title: "ON SALE",
     desc: "CHOOSE FROM THE BEST",
-    bg: "f5faff",
+    bg: "d2dbe2",
   },
   {
     id: 2,
-    img: bday,
+    img: "https://images.template.net/wp-content/uploads/2017/09/Free-Vector-Birthday-Card-Design.png",
     title: "ON SALE",
     desc: "CHOOSE FROM THE BEST",
-    bg: "f5faf4",
+    bg: "6d6e72",
   },
   {
     id: 3,
-    img: bday,
+    img: "https://colorlib.com/cdn-cgi/image/width=1100,height=804,fit=crop,quality=80,format=auto,onerror=redirect,metadata=none/wp-content/uploads/sites/2/invitation-templates-for-weddings.jpg",
     title: "ON SALE",
     desc: "CHOOSE FROM THE BEST",
-    bg: "f5fahg",
+    bg: "eaecde",
   },
 ];
 
