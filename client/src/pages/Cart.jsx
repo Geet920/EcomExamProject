@@ -492,7 +492,7 @@ const Cart = () => {
                 <SummaryItemText>Total</SummaryItemText>
                 <SummaryItemPrice>
                   {cart.quantity !== 0 && cart.total < 4999
-                    ? formatAmount(totalAmount)
+                    ? formatAmount(totalAmount + 50)
                     : cart.quantity === 0
                     ? formatAmount(0)
                     : formatAmount(totalAmount)}

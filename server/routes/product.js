@@ -21,7 +21,7 @@ router.post("/", verifyTokenAndAdmin, async(req,res) => {
 })
 
 //UPDATE
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.patch("/:id", verifyTokenAndAdmin, async (req, res) => {
  
 
   try {

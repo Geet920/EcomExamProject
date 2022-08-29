@@ -1,19 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { bigtablet, mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   flex: 1;
-  margin: 3px;
-  height: 70vh;
+  margin: 10px;
+  min-width: 280px;
+  height: 550px;
+  display: flex;
+  align-items: center;
   position: relative;
+  ${bigtablet({ height: "500px", minWidth: "330px" })}
+  ${tablet({ height: "400px", minWidth: "300px" })}
+  ${mobile({ margin: "5px 0", height: "250px", minWidth: "220px" })}
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  ${mobile({ height: "30vh" })}
 `;
 const Info = styled.div`
   position: absolute;
@@ -28,16 +33,24 @@ const Info = styled.div`
 `;
 const Title = styled.h1`
   color: whitesmoke;
-  margin-top: 60%;
+  margin-bottom: 20px;
 `;
 const Button = styled.button`
-  border: none;
-  padding: 10px;
-  background-color: white;
-  color: gray;
+ padding: 10px 15px;
   cursor: pointer;
   font-weight: 600;
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  &:hover {
+    opacity: 0.9;
+    color: black;
+    transform: scale(1.01);
+  }
 `;
+
 
 const CategoryItem = ({ item }) => {
   return (

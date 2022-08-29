@@ -16,17 +16,17 @@ router.post("/", verifyToken, async (req, res) => {
     const savedOrder = await newOrder.save();
     res.status(200).json(savedOrder);
   } catch (err) {
-    res.status(500).json(err);
+   
   }
 });
 
 //UPDATE
-router.put("/:id", verifyTokenAndAdmin, async (req, res) => {
+router.patch("/:id", verifyTokenAndAdmin, async (req, res) => {
   try {
     const updatedOrder = await Order.findByIdAndUpdate(
       req.params.id,
       {
-        $set: req.body,
+        $set: req.body.status,
       },
       { new: true }
     );
@@ -47,7 +47,7 @@ router.delete("/:id", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //GET USER ORDERS
-router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
+router.get("/:userId", verifyTokenAndAuthorization, async (req, res) => {
   try {
     const orders = await Order.findOne({ userId: req.params.userId });
     res.status(200).json(orders);
@@ -60,8 +60,8 @@ router.get("/find/:userId", verifyTokenAndAuthorization, async (req, res) => {
 
 router.get("/", verifyTokenAndAdmin, async (req, res) => {
   try {
-    const orderss = await Order.find();
-    rest.status(200).json(orders);
+    const orders = await Order.find();
+    res.status(200).json(orders);
   } catch (err) {
     res.status(500).json(err);
   }

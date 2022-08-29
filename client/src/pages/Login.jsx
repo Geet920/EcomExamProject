@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import FailedModel from "../components/Model/FailedModel";
 import { useNavigate } from "react-router-dom";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -18,13 +19,14 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-   width: 85vw;
+  width: 85vw;
   max-width: 400px;
   padding: 20px;
+  ${mobile({ width: "300px", flexDirection: "column" })}
 `;
 
 const Form = styled.form`
-   display: flex;
+  display: flex;
   flex-direction: column;
 `;
 
@@ -33,10 +35,11 @@ const Title = styled.h1`
   font-weight: bold;
   margin: 20px auto;
   text-align: center;
+  ${mobile({ fontSize: "24px" })}
 `;
 
 const Input = styled.input`
-   flex: 1;
+  flex: 1;
   width: 85%;
   min-width: 40%;
   margin: 10px auto;
@@ -44,10 +47,11 @@ const Input = styled.input`
   text-indent: 10px;
   border-radius: 30px;
   border: 1px solid lightgrey;
+  ${mobile({ width: "100%" })}
 `;
 
 const Button = styled.button`
- text-align: center;
+  text-align: center;
   width: 40%;
   border: none;
   padding: 10px 0;
@@ -87,6 +91,7 @@ const Agreement = styled.label`
   display: block;
   margin-left: 60px;
   text-indent: -20px;
+  ${mobile({ marginLeft: "25px" })}
 `;
 const CheckBox = styled.input`
   vertical-align: middle;

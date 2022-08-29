@@ -17,6 +17,7 @@ const Container = styled.div`
   height: 350px;
   display: flex;
   align-items: center;
+  background-color: #efefef;
   position: relative;
   ${mobile({ height: "250px", margin: "10px auto", minWidth: "230px" })}
 `;
@@ -27,7 +28,7 @@ const Info = styled.div`
   bottom: 0;
   left: 0;
   background-color: white;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -69,9 +70,8 @@ const Right = styled.div`
   justify-content: flex-end;
 `;
 const Image = styled.img`
-  width: 80%;
+  width: 70%;
   z-index: 2;
-  object-fit: contain;
   align-items: center;
   padding-bottom: 30px;
   margin: auto;

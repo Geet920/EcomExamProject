@@ -4,12 +4,13 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import bcard from "../assets/images/birthdaycard2.jpg";
 import { Add, Remove } from "@mui/icons-material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { publicRequest } from "../requestMethod";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import Notification from "../components/Model/NotificationModel"
 
 const Container = styled.div``;
 
@@ -82,11 +83,12 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+  const navigate = useNavigate();
+  const [product, setProduct] = useState({});
   const location = useLocation();
   const id = location.pathname.split("/")[2];
-  const [product, setProduct] = useState({});
-  const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const getProduct = async () => {
@@ -121,7 +123,7 @@ const Product = () => {
         <InfoContainer>
           <Title>{product.title}</Title>
           <Desc>{product.desc}</Desc>
-          <Price>₹ {product.price}</Price>
+          <Price>{product.price}</Price>
           <AddContainer>
             <AmountContainer>
               <Remove onClick={() => handleQuantity("dec")} />

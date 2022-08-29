@@ -158,9 +158,9 @@ const Account = () => {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user.currentUser);
   const handleModel = (type) => dispatch(openModel(type));
-  // const capitalize = (text) => {
-  //   return text[0]?.toUpperCase() + text?.slice(1);
-  // };
+  const capitalize = (text) => {
+    return text[0]?.toUpperCase() + text?.slice(1);
+  };
 
   return (
     <Container>
@@ -215,7 +215,7 @@ const Account = () => {
               <InfoText>First Name:</InfoText>
             </Category>
             <Value>
-              <InfoText>{currentUser?.firstname}</InfoText>
+              <InfoText>{capitalize(currentUser?.firstname)}</InfoText>
             </Value>
             <EditButton>
               <EditIcon onClick={() => handleModel("First Name")} />
@@ -226,7 +226,7 @@ const Account = () => {
               <InfoText>Last Name:</InfoText>
             </Category>
             <Value>
-              <InfoText>{currentUser?.lastname}</InfoText>
+              <InfoText>{capitalize(currentUser?.lastname)}</InfoText>
             </Value>
             <EditButton>
               <EditIcon onClick={() => handleModel("Last Name")} />

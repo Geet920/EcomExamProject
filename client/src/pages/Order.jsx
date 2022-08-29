@@ -299,7 +299,7 @@ const Order = () => {
         </TextContainer>
         <OrderContainer>
           <ProductContainer>
-            <Subtitle>Ordered Shoes</Subtitle>
+            <Subtitle>Ordered Products</Subtitle>
             <TextContainer>
               <Left>
                 <Text>Product</Text>
@@ -313,9 +313,7 @@ const Order = () => {
             </TextContainer>
             <Hr height={"3px"} />
             {products?.map((i) => (
-              <Item
-                key={i.productId._id + i.productId.size + i.productId.color}
-              >
+              <Item key={i.productId._id}>
                 <Info>
                   <Product>
                     <Left>
@@ -329,13 +327,6 @@ const Order = () => {
                         </ProductImage>
                         <ProductDetails>
                           <ProductName>{i.productId.name}</ProductName>
-                          <ProductInfo>{i.productId.brand}</ProductInfo>
-                          <ProductInfo> {i.productId.size} US</ProductInfo>
-                          <ProductColor>
-                            <ColorOutline>
-                              <BoxColor color={i.productId.color} />
-                            </ColorOutline>
-                          </ProductColor>
                           <ProductInfo>Qty: {i.productId.quantity}</ProductInfo>
                         </ProductDetails>
                       </Details>

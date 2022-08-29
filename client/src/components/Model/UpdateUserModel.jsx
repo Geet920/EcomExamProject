@@ -113,9 +113,9 @@ const UpdateUserModel = () => {
   const handleInput = (e) => {
     setInput({ [e.target.name]: e.target.value });
   };
-  // const capitalize = (text) => {
-  //   return text[0].toUpperCase() + text.slice(1);
-  // };
+  const capitalize = (text) => {
+    return text[0].toUpperCase() + text.slice(1);
+  };
   const type = () => {
     if (model.type === "First Name") {
       return "text";
@@ -144,9 +144,9 @@ const UpdateUserModel = () => {
   };
   const placeholder = () => {
     if (model.type === "First Name") {
-      return currentUser.firstname;
+      return capitalize(currentUser.firstname);
     } else if (model.type === "Last Name") {
-      return currentUser.lastname;
+      return capitalize(currentUser.lastname);
     } else if (model.type === "Username") {
       return currentUser.username;
     } else if (model.type === "Email") {

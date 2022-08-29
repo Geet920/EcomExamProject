@@ -3,6 +3,7 @@ import ArrowLeftOutlinedIcon from "@mui/icons-material/ArrowLeftOutlined";
 import ArrowRightOutlinedIcon from "@mui/icons-material/ArrowRightOutlined";
 import { useState } from "react";
 import SliderItems from "../data";
+import { bigtablet, mobile, tablet } from "../responsive";
 
 const Container = styled.div`
   width: 100%;
@@ -44,7 +45,9 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   background-color: #${(props) => props.bg};
-  
+  ${bigtablet({ height: "50%" })}
+  ${tablet({ height: "50%" })}
+  ${mobile({ height: "30%" })}
 `;
 
 const ImgContainer = styled.div`
@@ -54,7 +57,9 @@ const ImgContainer = styled.div`
   height: 100%;
   align-items: center;
   justify-content: center;
-  
+  ${bigtablet({ height: "50%", width: "50%" })}
+  ${tablet({ height: "60%", width: "60%" })}
+  ${mobile({ height: "50%", width: "50%" })}
 `;
 
 const Image = styled.img`
@@ -64,12 +69,15 @@ const Image = styled.img`
 
 const InfoContainer = styled.div`
   padding: 50px;
-
+  ${bigtablet({ height: "50%", width: "50%" })}
+  ${tablet({ height: "60%", width: "60%" })}
+  ${mobile({ height: "50%", width: "50%", padding: "0" })}
 `;
 
 const Title = styled.h1`
   font-size: 70px;
- 
+  ${tablet({ fontSize: "48px" })}
+  ${mobile({ fontSize: "20px" })}
 `;
 
 const Desc = styled.p`
@@ -78,7 +86,8 @@ const Desc = styled.p`
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 3px;
-
+  ${tablet({ fontSize: "16px", margin: "15px 0" })}
+  ${mobile({ fontSize: "20px", margin: "10px 0" })}
 `;
 
 const Button = styled.button`
@@ -94,20 +103,20 @@ const Button = styled.button`
     color: white;
     transform: scale(1.01);
   }
- 
+  ${tablet({ fontSize: "14px", margin: "10px 15px" })}
+  ${mobile({ fontSize: "8px", margin: "5px 10px", border: "1px solid black" })}
 `;
 
 const Slider = () => {
   const [slideIndex, setSlideIndex] = useState(0);
   const handleClick = (direction) => {
-    if(direction === "left"){
-      setSlideIndex(slideIndex > 0 ? slideIndex -1 : 2)
-    }
-    else {
-      setSlideIndex(slideIndex < 2 ? slideIndex +1 : 0)
+    if (direction === "left") {
+      setSlideIndex(slideIndex > 0 ? slideIndex - 1 : 2);
+    } else {
+      setSlideIndex(slideIndex < 2 ? slideIndex + 1 : 0);
     }
   };
-  
+
   return (
     <Container>
       <Arrow direction="left" onClick={() => handleClick("left")}>

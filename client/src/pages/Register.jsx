@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { mobile } from "../responsive";
 import styled from "styled-components";
 import { register } from "../redux/apiCalls";
 import FailedModel from "../components/Model/FailedModel";
@@ -18,7 +18,7 @@ const Container = styled.div`
 const Wrapper = styled.div`
   width: 400px;
   padding: 0 20px;
-
+  ${mobile({ width: "300px" })}
 `;
 
 const Form = styled.form`
@@ -30,7 +30,7 @@ const Title = styled.h1`
   font-weight: bold;
   text-align: center;
   color: black;
-
+  ${mobile({ fontSize: "24px" })}
 `;
 
 const Input = styled.input`
@@ -210,7 +210,9 @@ const Register = () => {
               By creating an account, I consent to the processing of my personal
               data in accordance with the <b> PRIVACY POLICY</b>
             </Agreement>
-            <Button type="submit" disabled={isFetching ? true : false}>Sign Up</Button>
+            <Button type="submit" disabled={isFetching ? true : false}>
+              Sign Up
+            </Button>
           </Form>
           <Options
             onClick={() => {

@@ -11,7 +11,11 @@ const OrderSchema = new mongoose.Schema(
         productId: { type: Object },
       },
     ],
-    status: { type: String, default: "pending" },
+    status: {
+      type: String,
+      enum: ["Cancelled", "To Ship", "Shipped", "Delivered"],
+      default: "To Ship",
+    },
   },
   { timestamps: true }
 );
